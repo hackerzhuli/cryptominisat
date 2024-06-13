@@ -230,7 +230,7 @@ if (FINAL_PREDICTOR)
     )
 endif()
 
-add_library(cryptominisat5
+add_library(cryptominisat5 STATIC
     ${cryptoms_lib_files}
     cryptominisat.cpp
 )
