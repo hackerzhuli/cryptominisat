@@ -534,15 +534,17 @@ if (NOT NOZLIB AND NOT ((NOT BUILD_SHARED_LIBS) AND WIN32))
 endif()
 
 
-find_library(cadiback
-    PATHS ${CMAKE_CURRENT_SOURCE_DIR}/../cadiback/
-    NAMES cadiback
-    REQUIRED)
-find_library(cadical
-    PATHS ${CMAKE_CURRENT_SOURCE_DIR}/../cadical/build/
-    NAMES cadical
-    REQUIRED)
-
+#find_library(cadiback
+#    PATHS ${CMAKE_CURRENT_SOURCE_DIR}/../cadiback/
+#    NAMES cadiback
+#    REQUIRED)
+#find_library(cadical
+#    PATHS ${CMAKE_CURRENT_SOURCE_DIR}/../cadical/build/
+#    NAMES cadical
+#    REQUIRED)
+# 改成了直接包含
+add_subdirectory(../cadiback lib/cadiback)
+#add_subdirectory(../cadical lib/cadical)
 
 include(CheckFloatPrecision)
 check_float_precision()
@@ -643,7 +645,7 @@ endif()
 # -----------------------------------------------------------------------------
 # Provide an export name to be used by targets that wish to export themselves.
 # -----------------------------------------------------------------------------
-set(CRYPTOMINISAT5_EXPORT_NAME "cryptominisat5Targets")
+#set(CRYPTOMINISAT5_EXPORT_NAME "cryptominisat5Targets")
 
 #query definitions
 get_directory_property( DirDefs DIRECTORY ${CMAKE_SOURCE_DIR} COMPILE_DEFINITIONS )
@@ -714,10 +716,10 @@ set(MY_TARGETS cryptominisat5)
 if (IPASIR)
     set(MY_TARGETS ${MY_TARGETS} ipasircryptominisat5)
 endif()
-export(
-    TARGETS ${MY_TARGETS}
-    FILE "${CMAKE_CURRENT_BINARY_DIR}/${CRYPTOMINISAT5_TARGETS_FILENAME}"
-)
+#export(
+#    TARGETS ${MY_TARGETS}
+#    FILE "${CMAKE_CURRENT_BINARY_DIR}/${CRYPTOMINISAT5_TARGETS_FILENAME}"
+#)
 
 # Create cryptominisat5Config file
 set(EXPORT_TYPE "Build-tree")
@@ -728,7 +730,7 @@ configure_file(cryptominisat5Config.cmake.in
 
 # Export this package to the CMake user package registry
 # Now the user can just use find_package(cryptominisat5) on their system
-export(PACKAGE cryptominisat5)
+#export(PACKAGE cryptominisat5)
 
 set(DEF_INSTALL_CMAKE_DIR lib/cmake/cryptominisat5)
 set(CRYPTOMINISAT5_INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
@@ -757,7 +759,7 @@ install(FILES
 )
 
 # Install the export set for use with the install-tree
-install(
-    EXPORT ${CRYPTOMINISAT5_EXPORT_NAME}
-    DESTINATION "${CRYPTOMINISAT5_INSTALL_CMAKE_DIR}"
-)
+#install(
+#    EXPORT ${CRYPTOMINISAT5_EXPORT_NAME}
+#    DESTINATION "${CRYPTOMINISAT5_INSTALL_CMAKE_DIR}"
+#)
