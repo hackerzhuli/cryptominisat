@@ -435,3 +435,38 @@ The following arguments to cmake configure the generated build artifacts. To use
 C usage
 -----
 See src/cryptominisat_c.h.in for details. This is an experimental feature.
+
+Notes about the Fork
+-----
+This fork is the same as the original repo, except changed CMakeLists.txt to work on Windows as a static library.
+
+Also added cadiback, cadical, the dependency of the project directly here. So you don't have to separately get them.
+
+It is tested on Windows with mingW toolchain. Note that there is a hidden dependency that's the GMP library. Which is not available on Windows normally. You can use msys2 to install build tools which does include GMP.
+
+It's very easy to embed this library directly into your c++ project that use CMake as a build tool.
+
+How to embed this project into your dynamic library on Windows(link statically):
+
+First, put this project (directly copy or use git submodule) into a directory in your project, assume it's called "lib/cryptominisat".
+
+```txt
+add_subdirectory(lib/cryptominisat)
+
+add_library(yourlib SHARED
+        src/yourlib.cpp)
+
+target_link_libraries(yourlib cryptominisat5)
+
+# this is may or may not be useful depends on your needs
+target_link_options(yourlib PUBLIC "-static")
+
+target_include_directories(yourlib PUBLIC lib/cryptominisat/src)
+```
+
+Notes about changes made to cadiback/cadical:
+
+CMakeLists.txt are added to cadiback and cadical to work with CMake better
+
+Also some of the source code of cabicak/cadical are changed in order to compile on windows.
+
