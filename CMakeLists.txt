@@ -542,9 +542,8 @@ endif()
 #    PATHS ${CMAKE_CURRENT_SOURCE_DIR}/../cadical/build/
 #    NAMES cadical
 #    REQUIRED)
-# 改成了直接包含
-add_subdirectory(../cadiback lib/cadiback)
-#add_subdirectory(../cadical lib/cadical)
+# include directly
+add_subdirectory(lib/cadiback)
 
 include(CheckFloatPrecision)
 check_float_precision()
