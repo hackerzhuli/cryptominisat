@@ -442,7 +442,7 @@ This fork is the same as the original repo, except changed CMakeLists.txt to wor
 
 Also added cadiback, cadical, the dependency of the project directly here. So you don't have to separately get them.
 
-It is tested on Windows with mingW toolchain. Note that there is a hidden dependency that's the GMP library. Which is not available on Windows normally. You can use msys2 to install build tools which does include GMP.
+It is tested on Windows with mingW toolchain. Note that there is a hidden dependency that's the GMP library. Which is not available on Windows normally. You can use msys2 to install build tools which does include GMP. Although it is not tested on Linux, it should easily be modified to work.
 
 It's very easy to embed this library directly into your c++ project that use CMake as a build tool.
 
@@ -466,7 +466,5 @@ target_include_directories(yourlib PUBLIC lib/cryptominisat/src)
 
 Notes about changes made to cadiback/cadical:
 
-CMakeLists.txt are added to cadiback and cadical to work with CMake better
-
-Also some of the source code of cabicak/cadical are changed in order to compile on windows.
+CMakeLists.txt are added to cadiback and cadical to work with CMake better. Some of the source code of cabicak/cadical are changed in order to compile on windows.
 
