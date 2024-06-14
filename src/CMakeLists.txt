@@ -238,6 +238,7 @@ add_library(cryptominisat5 STATIC
 target_include_directories(cryptominisat5 PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:include>
+        PUBLIC ../lib
 )
 
 set_target_properties(cryptominisat5
